@@ -1,25 +1,38 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+// import 'firebase/storage';
+// import 'firebase/database';
 
 const config = {
-  apiKey: "AIzaSyCB9PW7J0PWXRON_xZ2N-iHxu3Quje7E14",
-  authDomain: "crw-db-c14d8.firebaseapp.com",
-  databaseURL: "https://crw-db-c14d8.firebaseio.com",
-  projectId: "crw-db-c14d8",
-  storageBucket: "crw-db-c14d8.appspot.com",
-  messagingSenderId: "270267820984",
-  appId: "1:270267820984:web:845bffcb6684b1a9a77d4d",
-  measurementId: "G-1ZHF2WHYMH"
+  apiKey: "AIzaSyCPWLiShuRJ6O848p5KXKb2vOTJUuY6aMY",
+  authDomain: "crwn-db-fe350.firebaseapp.com",
+  databaseURL: "https://crwn-db-fe350.firebaseio.com",
+  projectId: "crwn-db-fe350",
+  storageBucket: "crwn-db-fe350.appspot.com",
+  messagingSenderId: "915059312481",
+  appId: "1:915059312481:web:c2b8b446c65f5b4e036720",
+  measurementId: "G-XY877ZQYZ7"
 };
 
-firebase.initializeApp( config);
+firebase.initializeApp(config);
+// firebase.firestore();
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if(!userAuth) return;
+
+  const useRef = firestore.doc('users/7JXRQNCMB3KuIirMGHzV');
+
+  const snapShot = await useRef.get()
+  console.log('ire', firestore.doc(snapShot))
+}
+
 const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
+provider.setCustomParameters({ prompt: "select_account" });
+
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export default firebase;
